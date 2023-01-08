@@ -362,15 +362,22 @@ console.log(ifXCanDeviseWithY(-5, 7));//0
 // Beginning at the end of 'a', insert 'b' after every 3rd character of 'a'
 // Return the resulting string
 
-const insertElement = (x: string, y: string): any => {
-  let c: string[] = x.split('');
+const insertElement = (a: string, b: string): any => {
+  let c: string[] = a.split('');
+  let d:string[] = c.reverse();
+  let e:string[] =[];
+// console.log(d);
+ for (let i=0; i<c.length; i+3 ){
+  if( Number(c[i]) % 3 !== 0 ) {
 
-  // masivu reverse 
-  // ar for loop katram likt i + 3; 
+     e.push(c[i]);
+   } 
+  //else if{
 
-  c.splice(x.length - 1, 0,)
-  console.log(c);
-
+  // }
+ }
+  
+//   // c.splice(x.length - 1, 0,)
 };
 console.log('          Task 22');
 console.log(insertElement('1234567', '.'));//'1.234.567'
@@ -532,7 +539,7 @@ console.log(negativeValuesInArray([4,-3,2,1,0])); //1
 const descendingFunction = (a:number[]) =>{
 
  return a.sort((a, b) => (a > b ? -1 : 1));
-}
+};
 
 
 console.log('           Task 32');
@@ -543,6 +550,77 @@ console.log(descendingFunction([4,2,3,1])); //[4,3,2,1]
 // Write a function that takes an array of strings as argument
 // Sort the array elements alphabetically
 // Return the result
+const sortFuntion = (a:string[]) => {
+ return a.sort();
+};
+
 console.log('           Task 33');
-console.log(descendingFunction([1,3,2])); //[3,2,1]
+console.log(sortFuntion(['b', 'c', 'd', 'a'])); //['a', 'b', 'c', 'd']
+console.log(sortFuntion(['z', 'c', 'd', 'a', 'y', 'a', 'w'])); //['a', 'a', 'c', 'd', 'w', 'y', 'z']
+
+// Task 34 
+// Write a function that takes an array of numbers as argument
+// It should return the average of the numbers
+const averageFunction = (a:number[]) => {
+
+  return a.reduce((a, b) => a + b, 0) / a.length;
+}
+
+console.log('           Task 34');
+console.log(averageFunction([10,100,40])); //50
+console.log(averageFunction([10,100,1000])); //370
+console.log(averageFunction([-50,0,50,200])); //50
+
+
+// Task 35
+// Write a function that takes an array of strings as argument
+// Return the longest string
+const longestStringFromArray = (a:string[]) => {
+
+  return a.reduce((a, b) => a.length > b.length ? a : b);
+}; 
+
+console.log('           Task 35');
+console.log(longestStringFromArray(['help', 'me'])); //'help'
+console.log(longestStringFromArray(['I', 'need', 'candy'])); //'candy'
+
+
+// Task 36
+// Write a function that takes an array as argument
+// It should return true if all elements in the array are equal
+// It should return false otherwise
+const allElementsInArrayAreEqual = (a:(string | number | boolean )[]) =>{
+
+//  for (let i=0; i < a.length-1; i++ ){
+//     for (let j=1; j<a.length; j++)
+//   if (a[i] === a[j] ){  
+//   }
+//   return false; 
+//  }
+// return true; 
+
+ return a.every(val => val === a[0]);
+}
+
+console.log('           Task 36');
+console.log(allElementsInArrayAreEqual([true, true, true, true])); //true
+console.log(allElementsInArrayAreEqual(['test', 'test', 'test'])); //true
+console.log(allElementsInArrayAreEqual([1,1,1,2])); //false
+console.log(allElementsInArrayAreEqual(['10',10,10,10])); //false
+
+
+// Task 37
+// Write a function that takes arguments an arbitrary number of arrays
+// It should return an array containing the values of all arrays
+
+
+
+// const allArraysInOne = (...arrays: any ): (number |string | boolean)[] =>{
+//   arrays.flat();
+// };
+
+// console.log('           Task 37');
+// console.log(allArraysInOne([1, 2, 3], [4, 5, 6])); //[1, 2, 3, 4, 5, 6]
+// console.log(allArraysInOne(['a', 'b', 'c'], [4, 5, 6])); //['a', 'b', 'c', 4, 5, 6]
+// console.log(allArraysInOne([true, true], [1, 2], ['a', 'b'])); //[true, true, 1, 2, 'a', 'b']
 
