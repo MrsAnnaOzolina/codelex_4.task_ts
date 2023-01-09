@@ -366,22 +366,27 @@ const insertElement = (a: string, b: string): any => {
   let c: string[] = a.split('');
   let d:string[] = c.reverse();
   let e:string[] =[];
-// console.log(d);
- for (let i=0; i<c.length; i+3 ){
-  if( Number(c[i]) % 3 !== 0 ) {
+  let f:string[] =[];
+  let re= /,/gi;
+    for (let i=-1; i<d.length; i++ ){
+   if( i % 3 === 0 && i !==0 ) {
+     e.push(d[i]+b);
+} else{
+  e.push(d[i]);
 
-     e.push(c[i]);
-   } 
-  //else if{
+   }
+}
 
-  // }
- }
-  
-//   // c.splice(x.length - 1, 0,)
+return e.reverse().toString().replace(re,"");
 };
 console.log('          Task 22');
 console.log(insertElement('1234567', '.'));//'1.234.567'
+console.log(insertElement('abcde','$'));//'ab$cde'
+console.log(insertElement('zxyzxyzxyzxyzxyz','w'));//'zwxyzwxyzwxyzwxyzwxyz'
 
+
+
+// c.splice(x.length - 1, 0,)
 
 //  Task 23
 // Write a function that takes a string as argument
@@ -613,14 +618,45 @@ console.log(allElementsInArrayAreEqual(['10',10,10,10])); //false
 // Write a function that takes arguments an arbitrary number of arrays
 // It should return an array containing the values of all arrays
 
+const allArraysInOne = (...arrays: any ): (number| string| boolean)[] =>{
+  return arrays.flat();
+};
+
+console.log('           Task 37');
+ console.log(allArraysInOne([1, 2, 3], [4, 5, 6])); //[1, 2, 3, 4, 5, 6]
+console.log(allArraysInOne(['a', 'b', 'c'], [4, 5, 6])); //['a', 'b', 'c', 4, 5, 6]
+console.log(allArraysInOne([true, true], [1, 2], ['a', 'b'])); //[true, true, 1, 2, 'a', 'b']
+
+// Task 38
+// Write a function that takes an array of objects as argument
+// Sort the array by property b in ascending order
+// Return the sorted array
+type NumberToSort = Record<string, number>
+const sortArraysByPropertyB = (array: NumberToSort[] ) => {
+
+ return array.sort((a, b) => (a.b > b.b ? 1 : -1));
+}
+
+console.log('           Task 38');
+console.log(sortArraysByPropertyB([{a:1,b:2},{a:5,b:4}])); //[{a:1,b:2},{a:5,b:4}]
+console.log(sortArraysByPropertyB([{a:2,b:10},{a:5,b:4}])); //[{a:5,b:4},{a:2,b:10}]
+ console.log(sortArraysByPropertyB([{a:1,b:7},{a:2,b:1}])); //[{a:2,b:1},{a:1,b:7}]
 
 
-// const allArraysInOne = (...arrays: any ): (number |string | boolean)[] =>{
-//   arrays.flat();
-// };
+// Task 39
+// Write a function that takes two arrays as arguments
+// Merge both arrays and remove duplicate values
+// Sort the merge result in ascending order
+// Return the resulting array
 
-// console.log('           Task 37');
-// console.log(allArraysInOne([1, 2, 3], [4, 5, 6])); //[1, 2, 3, 4, 5, 6]
-// console.log(allArraysInOne(['a', 'b', 'c'], [4, 5, 6])); //['a', 'b', 'c', 4, 5, 6]
-// console.log(allArraysInOne([true, true], [1, 2], ['a', 'b'])); //[true, true, 1, 2, 'a', 'b']
+const mergeTwoArraysAndSort = (a:number[], b:number[]) => {
+ 
+ return a.concat(b).sort((a, b) => (a > b ? 1 : -1));
+}
+
+
+console.log('           Task 39');
+console.log(mergeTwoArraysAndSort([1, 2, 3], [3, 4, 5])); //[ 1, 2, 3, 4, 5 ]
+console.log(mergeTwoArraysAndSort([-10, 22, 333, 42], [-11, 5, 22, 41, 42])); //[ -11, -10, 5, 22, 41,  42, 333]
+
 
