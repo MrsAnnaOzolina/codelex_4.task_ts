@@ -617,8 +617,11 @@ console.log(allElementsInArrayAreEqual(['10',10,10,10])); //false
 // Task 37
 // Write a function that takes arguments an arbitrary number of arrays
 // It should return an array containing the values of all arrays
+
+//const allArraysInOne = (a:(string|number)[], b:a:(string|number)[], c?:string ): (number| string| boolean)[] =>{
 const allArraysInOne = (...arrays: any ): (number| string| boolean)[] =>{
-  return arrays.flat();
+ 
+return arrays.flat();
 };
 
 console.log('           Task 37');
@@ -1129,7 +1132,7 @@ const changeBlankSpaceWithNullValue = (a:Object58,) =>{
   let d:Object58 = {};
   for (let i=0; i<values.length; i++  ){
     
-    if ( Object.keys(a)[i].trim() !== ''){
+    if ( Object.values(a)[i] !== ''){
       
       d[Object.keys(a)[i]] = (Object.values(a)[i])
     } else {
@@ -1140,7 +1143,6 @@ const changeBlankSpaceWithNullValue = (a:Object58,) =>{
   
   return d; 
 };
-
 
 console.log('           Task 58');
 console.log(changeBlankSpaceWithNullValue({ a: 'a', b: 'b', c: '' })); // { a: 'a', b: 'b', c: null }
