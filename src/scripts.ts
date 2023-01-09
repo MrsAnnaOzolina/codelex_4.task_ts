@@ -1265,17 +1265,11 @@ console.log(twoDateInstancesToCheck(new Date('2001/01/01 08:00:00'), new Date('2
 // It should return the number of days that lies between those dates
 
 const differenceBetweenTwoDates = (a: Date, b: Date) => {
-  let c:number = (a.getFullYear()*364)+a.getDate()*12+a.getMonth();
-  let d:number = (b.getFullYear()*365)+b.getDate()*12+b.getMonth();
-  //  if ( c > d ){
-  //   return c-d; 
-  //  } else {
-  //   return d-c; 
-  //  }
-return c-d;
+  let diff: number = Math.abs(a.getTime() - b.getTime());
+  var diffDays = Math.ceil(diff / (1000 * 3600 * 24));
 
-
- };
+  return diffDays;
+};
 
 console.log('           Task 63');
 console.log(differenceBetweenTwoDates(new Date('2020-06-11'), new Date('2020-06-01'))); //10
