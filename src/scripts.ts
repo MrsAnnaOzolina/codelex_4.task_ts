@@ -932,30 +932,26 @@ console.log(createsNewObejctFromTwoArguments('b','w')); //{b:'w'}
 // Create an object that has properties with keys 'a' and corresponding values 'b'
 // Return the object
 
-// type ObjectElement = {
-//   [a:string|number]: string | number
-// }
+type ObjectElement = {
+  [a: string | number]: string | number
+}
+const createFromTwoArraysOneObject = (a: (string | number)[], b: (string | number)[]) => {
+  let d: ObjectElement = {}
+  a.forEach((e: number | string, i: number, a: (number | string)[]) => {
+    d[e] = b[i];
+  });
+  return d;
+};
 
+ //for (let i=0; i<a.length; i++){
+  // for(let j=0; j<b.length; j++){
+  // }
+ // console.log(a[i])
 
-// const createFromTwoArraysOneObject = (a: (string | number)[], b: (string | number)[]) => {
-//   //let c: ObjectElement[]= {}
-//  for (let i=0; i<a.length; i++){
-
-//   // for(let j=0; j<b.length; j++){
-//   // }
-//  // console.log(a[i])
-
-//  }
-
-//   return { [a[0]] };
-
-// };
-
-
-// console.log('           Task 51');
-// console.log(createFromTwoArraysOneObject(['a','b','c'],[1,2,3])); //{a:1,b:2,c:3}
-// console.log(createFromTwoArraysOneObject(['w','x','y','z'],[10,9,5,2])); //{w:10,x:9,y:5,z:2}
-// console.log(createFromTwoArraysOneObject([1,'b'],['a',2])); //{1:'a',b:2}
+console.log('           Task 51');
+console.log(createFromTwoArraysOneObject(['a','b','c'],[1,2,3])); //{a:1,b:2,c:3}
+console.log(createFromTwoArraysOneObject(['w','x','y','z'],[10,9,5,2])); //{w:10,x:9,y:5,z:2}
+console.log(createFromTwoArraysOneObject([1,'b'],['a',2])); //{1:'a',b:2}
 
 // Task 52
 // Write a function that takes an object (a) as argument
