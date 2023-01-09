@@ -617,7 +617,6 @@ console.log(allElementsInArrayAreEqual(['10',10,10,10])); //false
 // Task 37
 // Write a function that takes arguments an arbitrary number of arrays
 // It should return an array containing the values of all arrays
-
 const allArraysInOne = (...arrays: any ): (number| string| boolean)[] =>{
   return arrays.flat();
 };
@@ -660,3 +659,702 @@ console.log(mergeTwoArraysAndSort([1, 2, 3], [3, 4, 5])); //[ 1, 2, 3, 4, 5 ]
 console.log(mergeTwoArraysAndSort([-10, 22, 333, 42], [-11, 5, 22, 41, 42])); //[ -11, -10, 5, 22, 41,  42, 333]
 
 
+// Task 39
+// Write a function that takes two arrays as arguments
+// Merge both arrays and remove duplicate values
+// Sort the merge result in ascending order
+// Return the resulting array
+
+const mergeTwoArraysAndRemoveDublicates = (a: number[], b: number[]) => {
+  let c = a.concat(b); 
+  let u: number[] = [];
+  c.forEach(element => {
+    if (!u.includes(element)) {
+      u.push(element)
+    }
+  });
+
+  return u.sort((a, b) => a - b);
+
+};
+ 
+ console.log('           Task 39');
+ console.log(mergeTwoArraysAndRemoveDublicates([1, 2, 3], [3, 4, 5])); //[ 1, 2, 3, 4, 5 ]
+ console.log(mergeTwoArraysAndRemoveDublicates([-10, 22, 333, 42], [-11, 5, 22, 41, 42])); //[ -11, -10, 5, 22, 41,  42, 333]
+
+
+//  Task 40
+//  Write a function that takes an array (a) and a number (b) as arguments
+//  Sum up all array elements with a value greater than b
+//  Return the sum
+
+const sumUpValuesGreaterThenB = (a: number[], b: number) => {
+  let c: number[] = [];
+  a.forEach(element => {
+    if (element > b) {
+      c.push(element)
+    }
+  });
+
+  return c.reduce((a, b) => a + b, 0);
+
+}
+
+console.log('           Task 40');
+ console.log(sumUpValuesGreaterThenB([1, 2, 3, 4, 5, 6, 7], 2)); // 25
+ console.log(sumUpValuesGreaterThenB([-10, -11, -3, 1, -4], -3)); // 1
+ console.log(sumUpValuesGreaterThenB([78, 99, 100, 101, 401], 99)); // 602
+
+ 
+//  Task 41
+// Write a function that takes two numbers (min and max) as arguments
+// Return an array of numbers in the range min to max
+const createArrayFromMaxAndMinValue = (min: number, max: number) => {
+  let newArray: number[] = [];
+  let count = min;
+  for (count = min; count <= max; count++) {
+    newArray.push(count);
+  }
+  return newArray;
+};
+
+console.log('           Task 41');
+console.log(createArrayFromMaxAndMinValue(2, 10)); // [2, 3, 4, 5, 6, 7, 8, 9, 10] 
+console.log(createArrayFromMaxAndMinValue(1, 3)); // [1, 2, 3] 
+console.log(createArrayFromMaxAndMinValue(2, 7)); // [2, 3, 4, 5, 6, 7]
+
+//  Task 42
+//  Write a function that takes an array of strings as argument
+//  Group those strings by their first letter
+//  Return an object that contains properties with keys representing first letters
+//  The values should be arrays of strings containing only the corresponding strings
+//  For example, the array ['Alf', 'Alice', 'Ben'] should be transformed to
+//  { a: ['Alf', 'Alice'], b: ['Ben']}
+type NewArray = {
+  [key: string]: string[];
+}
+const arrayString = (a: string[]) => {
+  let b: NewArray = {};
+  a.forEach(element => {
+    const c = element[0].toLocaleLowerCase();
+    if (b[c]) {
+      b[c].push(element);
+    } else {
+      b[c] = [element];
+    }
+  })
+
+  return b;
+};
+
+console.log('           Task 42');
+console.log(arrayString(['Alf', 'Alice', 'Ben'])); //{ a: ['Alf', 'Alice'], b: ['Ben']}
+console.log(arrayString(['Ant', 'Bear', 'Bird'])); //{ a: ['Ant'], b: ['Bear', 'Bird']}
+console.log(arrayString(['Berlin', 'Paris', 'Prague'])); //{ b: ['Berlin'], p: ['Paris', 'Prague']}
+
+// Task 43
+// Write a function that takes an array with arbitrary elements and a number as arguments
+// Return a new array, the first element should be either the given number itself
+// or zero if the number is smaller than 6
+// The other elements should be the elements of the original array
+// Try not to mutate the original array
+
+const arrayAndArbitraryElement = (a: (number | string | boolean)[], b: number) => {
+  let c: (number | string | boolean)[] = a;
+  if (b > 5) {
+    c.unshift(b);
+  } else {
+    c.unshift('0');
+  }
+  return c;
+}
+
+console.log('           Task 43');
+console.log(arrayAndArbitraryElement([1,2,3], 6)); //[6,1,2,3]
+console.log(arrayAndArbitraryElement(['a','b'], 2)); //[0,'a','b']
+console.log(arrayAndArbitraryElement([null,false], 11)); //[11,null,false]
+
+// Task 44
+// Write a function that takes an array (a) and a value (n) as arguments
+// Save every nth element in a new array
+// Return the new array
+
+const everyNthElementInNewArray = (a: number[], b: number) => {
+  let c: number[] = [];
+  a.forEach((element, index) => {
+    if ((index + 1) % b === 0) {
+      c.push(element);
+    }
+  })
+
+  return c;
+}
+
+console.log('           Task 44');
+console.log(everyNthElementInNewArray([1,2,3,4,5,6,7,8,9,10],3)); //[3,6,9]
+console.log(everyNthElementInNewArray([10,9,8,7,6,5,4,3,2,1],5)); //[6,1]
+console.log(everyNthElementInNewArray([7,2,1,6,3,4,5,8,9,10],2)); //[2,6,4,8,10]
+
+// Task 45
+// Write a function that takes an object with two properties as argument
+// It should return the value of the property with key country
+
+type CountryAndContinentP = {
+  continent: string
+  country: string
+}
+const getCountryFromObejct = (a: CountryAndContinentP) => {
+  return a.country;
+};
+
+console.log('           Task 45');
+console.log(getCountryFromObejct({  continent: 'Asia',  country: 'Japan'})); //'Japan'
+console.log(getCountryFromObejct({  country: 'Sweden',  continent: 'Europe'})); //'Sweden'
+
+
+// Task 46
+// Write a function that takes an object with two properties as argument
+// It should return the value of the property with key 'prop-2'
+// Tip: you might want to use the square brackets property accessor
+// type TwoPropertyObject = {
+//   one: number
+//   'prop-2': number | string
+//   prop: string
+// }
+type TwoPropertyObject = Record<string | number,  string | number>
+const getPropertyWithKeyProp2 = (a: TwoPropertyObject): string | number => {
+  return a['prop-2'];
+}
+
+console.log('           Task 46');
+console.log(getPropertyWithKeyProp2({  one: 1,  'prop-2': 2})); //2
+console.log(getPropertyWithKeyProp2({  'prop-2': 'two',  prop: 'test'})); //two
+
+
+// Task 47
+// Write a function that takes an object with two properties and a string as arguments
+// It should return the value of the property with key equal to the value of the string
+type CountryAndContinent = {
+  continent: string
+  country: string
+}
+const getCountryFromArguementB = (a: CountryAndContinent, b:string) => {
+ if (b === "country"){
+  return a.country;
+ } else{
+  return a.continent;
+ }
+
+};
+
+console.log('           Task 47');
+console.log(getCountryFromArguementB({  continent: 'Asia',  country: 'Japan'}, 'continent')); //'Asia'
+console.log(getCountryFromArguementB({  country: 'Sweden',  continent: 'Europe'}, 'country')); //'Sweden'
+
+
+// Task 48
+// Write a function that takes an object (a) and a string (b) as argument
+// Return true if a has a property with key b
+// Return false otherwise
+
+type DifferentValues = {
+  a: number;
+  b: number;
+  c: number;
+}
+type DifferentValuesELSE = {
+  x: string;
+  y: string;
+  z: string;
+}
+
+
+const getTruOrFalse = (a: DifferentValues| DifferentValuesELSE, b:string) => {
+  let keys:string[] = Object.keys(a);
+  for (let i=0; i<keys.length; i++){
+    if( keys[i] === b ){
+      return true; 
+    }
+  }
+  return false; 
+
+};
+
+
+console.log('           Task 48');
+console.log(getTruOrFalse({a:1,b:2,c:3},'b')); //true
+console.log(getTruOrFalse({x:'a',y:'b',z:'c'},'a')); //false
+console.log(getTruOrFalse({x:'a',y:'b',z:'c'},'z')); //true
+
+
+// Task 49
+// Write a function that a string (a) as argument
+// Create an object that has a property with key 'key' and a value of a
+// Return the object
+type CreatesNewArray = {
+  key: string
+}
+const createsNewObejct = (a: string) => {
+
+  return { key: a };
+
+};
+
+console.log('           Task 49');
+console.log(createsNewObejct('a')); //{key:'a'}
+console.log(createsNewObejct('z')); //{key:'z'}
+console.log(createsNewObejct('b')); //{key:'b'}
+
+// Task 50
+// Write a function that takes two strings (a and b) as arguments
+// Create an object that has a property with key 'a' and a value of 'b'
+// Return the object
+
+type WillCreateNewArray = {
+  a: string;
+}
+const createsNewObejctFromTwoArguments = (a: string, b: string) => {
+
+  return { [a]: b };
+
+};
+
+console.log('           Task 50');
+console.log(createsNewObejctFromTwoArguments('a','b')); //{a:'b'}
+console.log(createsNewObejctFromTwoArguments('z','x')); //{z:'x'}
+console.log(createsNewObejctFromTwoArguments('b','w')); //{b:'w'}
+
+// Task 51
+// Write a function that takes two arrays (a and b) as arguments
+// Create an object that has properties with keys 'a' and corresponding values 'b'
+// Return the object
+
+// type ObjectElement = {
+//   [a:string|number]: string | number
+// }
+
+
+// const createFromTwoArraysOneObject = (a: (string | number)[], b: (string | number)[]) => {
+//   //let c: ObjectElement[]= {}
+//  for (let i=0; i<a.length; i++){
+
+//   // for(let j=0; j<b.length; j++){
+//   // }
+//  // console.log(a[i])
+
+//  }
+
+//   return { [a[0]] };
+
+// };
+
+
+// console.log('           Task 51');
+// console.log(createFromTwoArraysOneObject(['a','b','c'],[1,2,3])); //{a:1,b:2,c:3}
+// console.log(createFromTwoArraysOneObject(['w','x','y','z'],[10,9,5,2])); //{w:10,x:9,y:5,z:2}
+// console.log(createFromTwoArraysOneObject([1,'b'],['a',2])); //{1:'a',b:2}
+
+// Task 52
+// Write a function that takes an object (a) as argument
+// Return an array with all object keys
+
+type AllObjectsInArray = {
+  [a:string]:number;
+}
+const getOnlyAllObjectFromObjectArray = (a: AllObjectsInArray):string[] => {
+    let keys:string[] = Object.keys(a);
+    return keys;
+ 
+};
+
+
+console.log('           Task 52');
+console.log(getOnlyAllObjectFromObjectArray({a:1,b:2,c:3})); //['a','b','c']
+console.log(getOnlyAllObjectFromObjectArray({j:9,i:2,x:3,z:4})); //['j','i','x','z']
+console.log(getOnlyAllObjectFromObjectArray({w:15,x:22,y:13})); //['w','x','y']
+
+// Task 53
+// Write a function that takes an object (a) as argument
+// Return the sum of all object values
+
+type Object53 = {
+  [a:string]:number;
+}
+const getSumOfObjectValues = (a: Object53):number => {
+    let values :number[] = Object.values(a);
+ 
+
+    let sum:number = 0;
+
+    values.forEach((element) => {
+      sum += element;
+    });
+
+  return sum; 
+ 
+};
+
+console.log('           Task 53');
+console.log(getSumOfObjectValues({a:1,b:2,c:3})); // 6
+console.log(getSumOfObjectValues({j:9,i:2,x:3,z:4})); // 18
+console.log(getSumOfObjectValues({w:15,x:22,y:13})); // 50
+
+
+// Task 54
+// Write a function that takes an object as argument
+// It should return an object with all original object properties
+// except for the property with key 'b'
+
+type Object54 = {
+  [a:string]:number;
+}
+const removeKeyBFromList = (a: Object54) :Object54 => {
+  let keys:string[] = Object.keys(a);
+  let d:Object54 = {};
+  for (let i=0; i<keys.length; i++  ){
+    if (Object.keys(a)[i] !== 'b'){
+      d[Object.keys(a)[i]] = (Object.values(a)[i])
+    }
+  
+  }
+  return  d;
+ 
+};
+
+
+console.log('           Task 54');
+console.log(removeKeyBFromList({ a: 1, b: 7, c: 3 })); // { a: 1, c: 3 }
+console.log(removeKeyBFromList({ b: 0, a: 7, d: 8 })); // { a: 7, d: 8 }
+console.log(removeKeyBFromList({ e: 6, f: 4, b: 5, a: 3 })); // { e: 6, f: 4, a: 3 }
+
+
+// Task 55
+// Write a function that takes two objects as arguments
+// Unfortunately, the property 'b' in the second object has the wrong key
+// should be named 'd' instead
+// Merge both objects and correct the wrong property name
+// Return the resulting object
+// It should have the properties 'a', 'b', 'c', 'd', and 'e'
+type Object55 = {
+  [a:string]:number;
+}
+
+
+const mergeArrayAndReplaceCwithD = (a:Object55, b:Object55):Object55 =>{
+  let keys:string[] = Object.keys(b);
+  let d:Object55 = {};
+  for (let i=0; i<keys.length; i++  ){
+    if (Object.keys(b)[i] !== 'b'){
+      d[Object.keys(b)[i]] = (Object.values(b)[i])
+    } else {
+      d['d'] = (Object.values(b)[i])
+    }
+  }
+
+  
+  const f = { ...a, ...d };
+  return f; 
+}
+
+console.log('           Task 55');
+console.log(mergeArrayAndReplaceCwithD({ a: 1, b: 2 }, { c: 3, b: 4, e: 5 })); // { a: 1, b: 2, c: 3, e: 5, d: 4}
+console.log(mergeArrayAndReplaceCwithD({ a: 5, b: 4 }, { c: 3, b: 1, e: 2 })); // { a: 5, b: 4, c: 3, e: 2, d: 1}
+
+// Task 56
+// Write a function that takes an object (a) and a number (b) as arguments
+// Multiply all values of 'a' by 'b'
+// Return the resulting object
+type Object56 = {
+  [a:string]:number;
+}
+
+const takeObjectAValuesAndMultiplyByB = (a:Object56, b:number) =>{
+  let keys:string[] = Object.keys(a);
+  let d:Object56 = {};
+  for (let i=0; i<keys.length; i++  ){
+  d[Object.keys(a)[i]] = (Object.values(a)[i] * b)
+
+  }
+  return d;
+};
+
+console.log('           Task 56');
+console.log(takeObjectAValuesAndMultiplyByB({a:1,b:2,c:3},3)); // {a:3,b:6,c:9}
+console.log(takeObjectAValuesAndMultiplyByB({j:9,i:2,x:3,z:4},10)); // {j:90,i:20,x:30,z:40}
+console.log(takeObjectAValuesAndMultiplyByB({w:15,x:22,y:13},6)); // {w:90,x:132,y:78}
+
+
+// Task 57
+// Write a function that takes an object as argument
+// Somehow, the properties and keys of the object got mixed up
+// Swap the Javascript object's key with its values and return the resulting object
+
+type Object57 = {
+  [a:string]:string| number;
+}
+
+const swapKeysAndValuesForObject = (a:Object57):Object57 =>{
+  // let keys:string[] = Object.keys(a);
+  // let d:Object56 = {};
+  // for (let i=0; i<keys.length; i++  ){
+  // d[Object.values(a)[i]] = (Object.keys(a)[i])
+
+  // }
+  // return d;
+// }
+  const swapped = Object.entries(a).map(
+    ([key, value]) => [value, key]
+  );
+
+  return Object.fromEntries(swapped);
+}
+
+console.log('           Task 57');
+console.log(swapKeysAndValuesForObject({z:'a',y:'b',x:'c',w:'d'})); // {a:'z',b:'y',c:'x',d:'w'}
+console.log(swapKeysAndValuesForObject({2:'a',4:'b',6:'c',8:'d'})); // {a:'2',b:'4',c:'6',d:'8'}
+console.log(swapKeysAndValuesForObject({a:1,z:24})); // {1:'a',24:'z'}
+
+// Task 58
+// Write a function that takes an object as argument
+// Some of the property values contain empty strings
+// Replace empty strings and strings that contain only whitespace with null values
+// Return the resulting object
+
+type Object58 = {
+  [a:string]:string| boolean;
+}
+
+const changeBlankSpaceWithNullValue = (a:Object58,) =>{
+  let values:(string|boolean)[] = Object.values(a);
+  let d:Object58 = {};
+  for (let i=0; i<values.length; i++  ){
+    
+    if ( Object.keys(a)[i].trim() !== ''){
+      
+      d[Object.keys(a)[i]] = (Object.values(a)[i])
+    } else {
+      d[Object.keys(a)[i]] = null;
+    }
+  }
+
+  
+  return d; 
+};
+
+
+console.log('           Task 58');
+console.log(changeBlankSpaceWithNullValue({ a: 'a', b: 'b', c: '' })); // { a: 'a', b: 'b', c: null }
+console.log(changeBlankSpaceWithNullValue({ a: '', b: 'b', c: ' ', d: 'd' })); //{ a: null, b: 'b', c: null, d: 'd' }
+console.log(changeBlankSpaceWithNullValue({ a: 'a', b: 'b ', c: ' ', d: '' })); //{ a: 'a', b: 'b ', c: null, d: null }
+
+
+// Task 59
+// Write a function that takes an object as argument containing properties with personal information
+// Extract firstName, lastName, size, and weight if available
+// If size or weight is given transform the value to a string
+// Attach the unit cm to the size
+// Attach the unit kg to the weight
+// Return a new object with all available properties that we are interested in
+
+type Object59 = {
+    [a:string]:string| number;
+  }
+  
+const printSpecificValuesFromObject = (a: Object59) => {
+  let newArr: Object59 = {};
+  let keys: (string | boolean)[] = Object.keys(a);
+  let d: Object59 = {};
+  for (let i = 0; i < keys.length; i++) {
+    if (Object.keys(a)[i] === 'fn' || Object.keys(a)[i] === 'ln') {
+      d[Object.keys(a)[i]] = (Object.values(a)[i]);
+    } else if (Object.keys(a)[i] === 'size') {
+      d[Object.keys(a)[i]] = (Object.values(a)[i] + " cm");
+    } else if (Object.keys(a)[i] === 'weight') {
+      d[Object.keys(a)[i]] = (Object.values(a)[i] + " kg")
+    }
+
+  }
+
+  return d;
+};
+
+console.log('           Task 59');
+console.log(printSpecificValuesFromObject({fn: 'Lisa', ln: 'Müller', age: 17, size: 175, weight: 67})); // {fn: 'Lisa', ln: 'Müller', size: '175cm', weight: '67kg'}
+console.log(printSpecificValuesFromObject({fn: 'Martin', ln: 'Harper', age: 26, email: 'martin.harper@test.de', weight: 102})); // {fn: 'Martin', ln: 'Harper', weight: '102kg'}
+console.log(printSpecificValuesFromObject({fn: 'Andrew', ln: 'Harper', age: 81, size: 175, weight: 71})); // {fn: 'Andrew', ln: 'Harper', size: '175cm', weight: '71kg'}
+console.log(printSpecificValuesFromObject({fn: 'Matthew', ln: 'Müller', age: 19, email: 'matthew@mueller.de'})); // {fn: 'Matthew', ln: 'Müller'}
+
+// Task 60
+// Write a function that takes an array of objects and a string as arguments
+// Add a property with key 'continent' and value equal to the string to each of the objects
+// Return the new array of objects
+// Tip: try not to mutate the original array
+type Object60 = {
+  [a:string]:string;
+}
+
+const addNewPropertyContinent = (a: Object60[], b:string):Object60[] => {
+ let d: Object60 = {};
+ let f: Object60[]= [];
+ const g = a.map(object =>{
+  object["continent"]= b;
+  
+ }) 
+ return a;
+};
+
+console.log('           Task 60');
+console.log(addNewPropertyContinent([{ city: 'Tokyo', country: 'Japan' }, { city: 'Bangkok', country: 'Thailand' }], 'Asia')); //[{ city: 'Tokyo', country: 'Japan', continent: 'Asia' }, { city: 'Bangkok', country: 'Thailand', continent: 'Asia' }]
+console.log(addNewPropertyContinent([{ city: 'Stockholm', country: 'Sweden' }, { city: 'Paris', country: 'France' }], 'Europe')); //[{ city: 'Stockholm', country: 'Sweden', continent: 'Europe' }, { city: 'Paris', country: 'France', continent: 'Europe' }]
+
+// Task 61
+// Write a function that takes an array of numbers as argument
+// Convert the array to an object
+// It should have a key for each unique value of the array
+// The corresponding object value should be the number of times the key occurs within the array
+
+type Object61 = {
+  [a:number]:number;
+}
+
+const numberArrayConvertToObject = (a: number[]):any => {
+  let b:Object61 ={};
+  let c: number; 
+  a.sort();
+  
+  a.forEach(element => {
+    if(element !== c ){
+      c=element;
+      b[element]= 1;
+    } else {
+      b[element] += 1 ; 
+    }
+  })
+return b;
+};
+
+console.log('           Task 61');
+console.log(numberArrayConvertToObject([1,2,2,3])); //{1:1,2:2,3:1}
+console.log(numberArrayConvertToObject([9,9,9,99])); //{9:3,99:1}
+console.log(numberArrayConvertToObject([4,3,2,1])); //{1:1,2:1,3:1,4:1}
+
+
+// Task 62
+// Write a function that takes two date instances as arguments
+// It should return true if the dates are equal
+// It should return false otherwise
+
+
+const twoDateInstancesToCheck = (a: Date, b: Date) => {
+ let c:number = a.getTime();
+ let d:number = b.getTime();
+if(c === d){
+  return true;
+} else {
+  return false
+}
+};
+
+console.log('           Task 62');
+console.log(twoDateInstancesToCheck(new Date('2000/01/01 08:00:00'), new Date('2000/01/01 08:45:00'))); //false
+console.log(twoDateInstancesToCheck(new Date('2000/01/01 08:00:00'), new Date('2000/01/01 08:00:00'))); //true
+console.log(twoDateInstancesToCheck(new Date('2001/01/01 08:00:00'), new Date('2000/01/01 08:00:00'))); //false
+
+// Task 63
+// Write a function that takes two date instances as argument
+// It should return the number of days that lies between those dates
+
+const differenceBetweenTwoDates = (a: Date, b: Date) => {
+  let c:number = (a.getFullYear()*364)+a.getDate()*12+a.getMonth();
+  let d:number = (b.getFullYear()*365)+b.getDate()*12+b.getMonth();
+  //  if ( c > d ){
+  //   return c-d; 
+  //  } else {
+  //   return d-c; 
+  //  }
+return c-d;
+
+
+ };
+
+console.log('           Task 63');
+console.log(differenceBetweenTwoDates(new Date('2020-06-11'), new Date('2020-06-01'))); //10
+console.log(differenceBetweenTwoDates(new Date('2000-01-01'), new Date('2020-06-01'))); //7457
+
+
+// Task 64
+// Write a function that takes two date instances as argument
+// It should return true if they fall on the exact same day
+// It should return false otherwise
+
+const exactSameDay = (a: Date, b: Date) => {
+  let c:number = a.getFullYear()+a.getDate()+a.getMonth();
+  let d:number = b.getFullYear()+b.getDate()+b.getMonth();
+  if(c === d){
+    return true;
+  }else {
+    return false
+  }
+};
+
+
+console.log('           Task 64');
+console.log(exactSameDay(new Date('2000/01/01'), new Date('2000/01/01'))); //true
+console.log(exactSameDay(new Date('2000/01/01'), new Date('2000/01/02'))); //false
+console.log(exactSameDay(new Date('2001/01/01'), new Date('2000/01/01'))); //false
+console.log(exactSameDay(new Date('2000/11/01'), new Date('2000/01/01'))); //false
+
+// Task 65
+// Write a function that takes two number arrays as parameters 
+// and return an array which contains elements from both 
+// arrays
+
+const spreadOperatorFunction= (a: number[], b:number[]) => {
+  let c:number[] = [...a, ...b] 
+  return c; 
+}
+
+console.log('           Task 65');
+console.log(spreadOperatorFunction([1, 2], [3, 4])); //[1, 2, 3, 4]
+console.log(spreadOperatorFunction([1, 2], [3, 4, 5, 6])); //[1, 2, 3, 4, 5, 6]
+
+// Task 66
+// Write a function that takes an array and a string as parameters 
+// and return an array which contains all elements from the given array
+// and the given string as the last element
+
+const spreadOperatorFunctionaddOneValue= (a: string[], b:string) => {
+  let c:string[] = [...a, b] 
+  return c; 
+}
+
+console.log('           Task 66');
+console.log(spreadOperatorFunctionaddOneValue(['Apple', 'Orange', 'Banana'], 'Kiwi')); //['Apple', 'Orange', 'Banana', 'Kiwi']
+
+// Task 67
+// Write a function that takes an array and a string as parameters 
+// and return an array which contains all elements from the given array
+// and the given string as the first element
+
+
+
+const spreadOperatorFunctionaddOneValueToBeginning= (a: string[], b:string) => {
+  let c:string[] = [b, ...a] 
+  return c; 
+}
+
+console.log('           Task 67');
+console.log(spreadOperatorFunctionaddOneValueToBeginning(['Apple', 'Orange', 'Banana'], 'Kiwi')); //['Kiwi', 'Apple', 'Orange', 'Banana']
+
+// Task 68
+// Write a function that takes two objects as parameters 
+// and return an object which contains properties from both 
+// objects
+
+myFunction({ a:1, b:2 }, { c:3, d:4 }) 
+Expected
+{ a:1, b:2, c:3, d:4 }
+
+myFunction({ a:1, b:2 }, { c:3, d:4, e:5, f:6 }) 
+Expected
+{ a:1, b:2, c:3, d:4, e:5, f:6 }
