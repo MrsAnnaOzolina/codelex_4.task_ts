@@ -1351,10 +1351,35 @@ console.log(spreadOperatorFunctionaddOneValueToBeginning(['Apple', 'Orange', 'Ba
 // and return an object which contains properties from both 
 // objects
 
-myFunction({ a:1, b:2 }, { c:3, d:4 }) 
-Expected
-{ a:1, b:2, c:3, d:4 }
+type Object68 = {
+  [a:string]:number;
+}
 
-myFunction({ a:1, b:2 }, { c:3, d:4, e:5, f:6 }) 
-Expected
-{ a:1, b:2, c:3, d:4, e:5, f:6 }
+const concatTwoObjects= (a: Object68, b:Object68) => {
+  let c:Object68 = {...b, ...a}
+  return c; 
+}
+
+console.log('           Task 68');
+console.log(concatTwoObjects({ a:1, b:2 }, { c:3, d:4 })); //{ a:1, b:2, c:3, d:4 }
+console.log(concatTwoObjects({ a:1, b:2 }, { c:3, d:4, e:5, f:6 })); //{ a:1, b:2, c:3, d:4, e:5, f:6 }
+
+// Task 69
+// Write a function that takes an object and a string as parameters 
+// and return an object which contains properties from the given object
+// and a new property favoriteMovie with the value equal to the given string
+
+type Object69 = {
+  [a:string|number]:string|number;
+}
+
+const addNewKeyandValueToObejct= (a: Object69, b:string) => {
+  let c:Object69 = {...a,favoriteMovie:b}
+
+  return c; 
+}
+
+console.log('           Task 69');
+console.log(addNewKeyandValueToObejct({ eyeColor: 'green', age: 10 }, 'Garfield')); //{ eyeColor: 'green', age: 10, favoriteMovie:  'Garfield' }
+console.log(addNewKeyandValueToObejct({ eyeColor: 'blue', age: 15 }, 'Twilight')); //{ eyeColor: 'blue', age: 15, favoriteMovie:  'Twilight' }
+
